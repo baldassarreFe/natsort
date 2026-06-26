@@ -53,7 +53,7 @@ def input_is_ok_with_locale(x: str) -> bool:
         (ns.FLOAT, partial(try_float, map=True, nan=float("-inf"))),
         (ns.FLOAT | ns.NANLAST, partial(try_float, map=True, nan=float("+inf"))),
         (ns.GROUPLETTERS, partial(try_int, map=True, on_fail=groupletters)),
-        (ns.LOCALE, partial(try_int, map=True, on_fail=lambda x: get_strxfrm()(x))),
+        (ns.LOCALE, partial(try_int, map=True, on_fail=get_strxfrm())),
         (
             ns.GROUPLETTERS | ns.LOCALE,
             partial(
