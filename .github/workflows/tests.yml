@@ -25,10 +25,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -58,7 +60,7 @@ jobs:
         run: coverage xml
 
       - name: Upload to CodeCov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v7
 
   test-bsd:
     name: Test on FreeBSD
@@ -66,7 +68,9 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Install and Run Tests
         uses: vmactions/freebsd-vm@v1
